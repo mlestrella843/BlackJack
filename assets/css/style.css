@@ -15,7 +15,12 @@ html, body {
 
 .card{
     position: relative;
+    display: inline-block;
     width: 150px;
     left: 100px;
-    margin-left:75px;
+    margin-left: -75px;
+}
+
+#player-card, #computer-card{
+    height:300px;
 }
