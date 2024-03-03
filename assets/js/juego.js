@@ -30,10 +30,9 @@ const crearDeck = () => {
 }
 
 crearDeck();
+
 //Funcion que tomara una carta.
-
 const pedirCarta = () => {
-
     if(deck.length === 0){
         throw 'No hay cartas en el deck';
     }
@@ -43,5 +42,15 @@ const pedirCarta = () => {
     console.log({carta});
     return carta;
 }
+// pedirCarta();
 
-pedirCarta();
+// Funcion para saber el valor de la carta
+const valorCarta = (carta) => {
+    // Para saber el valor de la carta substraigo los valores 0 y el subsiguiemte, si existe, en el caso del 10
+    const valor = carta.substring(0, carta.length - 1);
+    return ( isNaN( valor) ) ? // si no es numero haz la siguiente evaluacion
+           ( valor === 'A') ? 11 : 10 // como no es un numero, si es igual a A equivale a 11 puntos, sino a 10 puntos
+           : valor * 1; // y si en el string tiene valor de numero, lo convertimos a numero multiplicandolo por 1.
+        }
+const valor = valorCarta( pedirCarta() );
+console.log({valor});
