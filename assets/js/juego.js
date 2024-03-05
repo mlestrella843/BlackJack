@@ -54,3 +54,8 @@ const valorCarta = (carta) => {
         }
 const valor = valorCarta( pedirCarta() );
 console.log({valor});
+
+// La manipulacion del DOM
+// Chqear las anotaciones an mi mascota. 
+// Se refiera a los metodos y propiedades que tiene el objeto global del navegador document
+// eje: document.querySelector(), document.getElementById(), etc...
