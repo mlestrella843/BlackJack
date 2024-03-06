@@ -65,3 +65,11 @@ console.log({valor});
 //Luego crear una constante que haga referencia al dom y me permita crear un elemento.
 // const botonNnuevo = document.createElement('button')
 // luego divBotones.append(botonNuevo); esto me permite crear el boton dentro del div )
+// botonNuevo.innerText = 'Amar';  // esto me permite poner texto dentro del boton.
+// botonNuevo.classList.add('btn'); esto me permite crear las clases del boton, clases de boostrap en este caso
+// botonNuevo.classList.add('btn-success'); luego la otra subclase de boostrap.
+// igual para crear un INPUT
+// const input = document.createElement('input'); Creando un input.
+// document.body.append( input );
+// input.classList.add('form-control');
+// input.placeholder = 'Enter name';
