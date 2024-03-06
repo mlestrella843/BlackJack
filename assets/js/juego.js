@@ -59,3 +59,9 @@ console.log({valor});
 // Chqear las anotaciones an mi mascota. 
 // Se refiera a los metodos y propiedades que tiene el objeto global del navegador document
 // eje: document.querySelector(), document.getElementById(), etc...
+
+//Manipulacion del DOM II
+//Identificar con un id el div donde quiero colocar el boton. Ejemplo id="divBotones"
+//Luego crear una constante que haga referencia al dom y me permita crear un elemento.
+// const botonNnuevo = document.createElement('button')
+// luego divBotones.append(botonNuevo); esto me permite crear el boton dentro del div )
