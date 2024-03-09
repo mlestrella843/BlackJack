@@ -9,6 +9,13 @@ let deck = [];
 const tipos = ['C', 'D', 'H', 'S'];
 const especiales = [ 'A', 'J', 'Q', 'K' ]; 
 
+let puntosJugador=0;
+let puntosComputador=0;
+
+// Referencias del HTML
+const btnPedir = document.querySelector('#btnPedir');
+// console.log(btnPedir);
+
 //Esta funcion crea las barajas
 const crearDeck = () => {
     for ( let i=2; i<=10; i++ ) {
@@ -21,12 +28,10 @@ const crearDeck = () => {
             deck.push( especial + tipo );
         }
     }
-
-    // console.log(deck);
+    console.log(deck);
     deck = _.shuffle(deck); // Esta funcion de la biblioteca underscore, mezcla el array de cartas
     console.log(deck);
     return deck
-   
 }
 
 crearDeck();
@@ -36,10 +41,9 @@ const pedirCarta = () => {
     if(deck.length === 0){
         throw 'No hay cartas en el deck';
     }
-
     let carta = deck.pop();
-    console.log(deck);
-    console.log({carta});
+    // console.log(deck);
+    // console.log({carta});
     return carta;
 }
 // pedirCarta();
@@ -73,3 +77,15 @@ console.log({valor});
 // document.body.append( input );
 // input.classList.add('form-control');
 // input.placeholder = 'Enter name';
+
+//EVENTOS
+
+btnPedir.addEventListener('click', () => {
+    // console.log('Testing button');
+    const carta = pedirCarta();
+   
+    // console.log(carta);
+    puntosJugador = puntosJugador + ( valorCarta( carta ) );
+    console.log({puntosJugador});
+
+});
