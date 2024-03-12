@@ -15,6 +15,7 @@ let puntosComputador=0;
 // Referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
 // console.log(btnPedir);
+const puntosHTML = document.querySelectorAll('small');
 
 //Esta funcion crea las barajas
 const crearDeck = () => {
@@ -56,8 +57,9 @@ const valorCarta = (carta) => {
            ( valor === 'A') ? 11 : 10 // como no es un numero, si es igual a A equivale a 11 puntos, sino a 10 puntos
            : valor * 1; // y si en el string tiene valor de numero, lo convertimos a numero multiplicandolo por 1.
         }
-const valor = valorCarta( pedirCarta() );
-console.log({valor});
+ // Esto es para comprobar el vaor que se esta extrallendo de la carta.       
+// const valor = valorCarta( pedirCarta() );
+// console.log({valor});
 
 // La manipulacion del DOM
 // Chqear las anotaciones an mi mascota. 
@@ -83,9 +85,9 @@ console.log({valor});
 btnPedir.addEventListener('click', () => {
     // console.log('Testing button');
     const carta = pedirCarta();
-   
     // console.log(carta);
-    puntosJugador = puntosJugador + ( valorCarta( carta ) );
-    console.log({puntosJugador});
+    // Funcion que es para sumar los puentos del jugador. Sebe llegar a 21 para ganar. Si le falta o se pasa no gana.
+    puntosJugador = puntosJugador + valorCarta( carta ) ;
+    puntosHTML[0].innerText = puntosJugador ; 
 
 });
