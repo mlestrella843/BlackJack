@@ -15,6 +15,9 @@ let puntosComputador=0;
 // Referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
 // console.log(btnPedir);
+// Hago una referencia hacia el div del jugador en el html.
+const divCartaJugador = document.querySelector('#player-card');
+// Hago referencia hacia los puentos del jugador dentro del elemento small.
 const puntosHTML = document.querySelectorAll('small');
 
 //Esta funcion crea las barajas
@@ -81,7 +84,7 @@ const valorCarta = (carta) => {
 // input.placeholder = 'Enter name';
 
 //EVENTOS
-
+// Funcion que al dar click pide una carta, lee el valor de la carta, suma los puntos y los imprime en la puntuacion del jugador.
 btnPedir.addEventListener('click', () => {
     // console.log('Testing button');
     const carta = pedirCarta();
@@ -89,5 +92,13 @@ btnPedir.addEventListener('click', () => {
     // Funcion que es para sumar los puentos del jugador. Sebe llegar a 21 para ganar. Si le falta o se pasa no gana.
     puntosJugador = puntosJugador + valorCarta( carta ) ;
     puntosHTML[0].innerText = puntosJugador ; 
-
+    // <img class="card" src="assets/cartas/10H.png" alt="card"></img>
+    //creamos un elemento img dentro del docuemtno html.
+    const imgCarta = document.createElement('img');
+    // aplicamos el metodo src a la imagen, para que la lea de forma dinamica segun el resulatdo de la funcion pedirCarta();
+    imgCarta.src = `assets/cartas/${ carta }.png`;
+    //Luego el anadimos la clase personalizada en nuestra hoja de estilos.
+    imgCarta.classList.add('card');
+    // Y luego la agregamos a nuestro DOM con todas las propiedades agreagdas.
+    divCartaJugador.append( imgCarta );
 });
