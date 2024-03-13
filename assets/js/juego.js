@@ -101,4 +101,14 @@ btnPedir.addEventListener('click', () => {
     imgCarta.classList.add('card');
     // Y luego la agregamos a nuestro DOM con todas las propiedades agreagdas.
     divCartaJugador.append( imgCarta );
+
+    // Debemos controlar las cartas que podra tomar el jugador. El limite es 21 puntos.
+    // Aqui desabilitamos el boton de pedir cartas.
+    if (puntosJugador > 21) {
+        console.warn("Has perdido");
+        btnPedir.disabled = true;
+    } else if ( puntosJugador === 21 ){
+        console.info("¡Felicidades! Has ganado");
+        btnPedir.disabled = true
+    }
 });
