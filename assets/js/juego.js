@@ -14,11 +14,16 @@ let puntosComputador=0;
 
 // Referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
+const btnDetener = document.querySelector('#btnStop');
 // console.log(btnPedir);
 // Hago una referencia hacia el div del jugador en el html.
 const divCartaJugador = document.querySelector('#player-card');
 // Hago referencia hacia los puentos del jugador dentro del elemento small.
+const divCartaComputador = document.querySelector('#computer-card');
+
 const puntosHTML = document.querySelectorAll('small');
+
+
 
 //Esta funcion crea las barajas
 const crearDeck = () => {
@@ -83,6 +88,30 @@ const valorCarta = (carta) => {
 // input.classList.add('form-control');
 // input.placeholder = 'Enter name';
 
+
+   // TURNO DE LA COMPUTADORA
+   // La computadora debe superar en puntos al jugador al momento de este detener el juego para el.
+   // los puntosMinomos seran los puentos de jugador, con el objetivo de que esta los iguale o supere.
+   const turnoComputadora = ( puntosMinimos ) => {
+        do {
+            const carta = pedirCarta();
+            puntosComputador = puntosComputador + valorCarta( carta ) ;
+            puntosHTML[1].innerText = puntosComputador ; 
+            
+            const imgCarta = document.createElement('img');
+            imgCarta.src = `assets/cartas/${ carta }.png`;
+            imgCarta.classList.add('card');
+            divCartaComputador.append( imgCarta );
+
+            if( puntosMinimos > 21){
+                break;
+            }
+
+        } while ( ( puntosComputador < puntosMinimos ) && ( puntosMinimos <= 21 ) );
+   }
+
+
+
 //EVENTOS
 // Funcion que al dar click pide una carta, lee el valor de la carta, suma los puntos y los imprime en la puntuacion del jugador.
 btnPedir.addEventListener('click', () => {
@@ -107,8 +136,21 @@ btnPedir.addEventListener('click', () => {
     if (puntosJugador > 21) {
         console.warn("Has perdido");
         btnPedir.disabled = true;
+        turnoComputadora( puntosJugador );
     } else if ( puntosJugador === 21 ){
         console.info("¡Felicidades! Has ganado");
-        btnPedir.disabled = true
+        btnPedir.disabled = true;
+        turnoComputadora( puntosJugador );
     }
+
+
 });
+
+
+btnDetener.addEventListener("click", () => {
+
+
+
+
+    
+})
