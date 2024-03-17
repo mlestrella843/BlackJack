@@ -15,6 +15,7 @@ let puntosComputador=0;
 // Referencias del HTML
 const btnPedir = document.querySelector('#btnPedir');
 const btnDetener = document.querySelector('#btnStop');
+const btnNuevoJuego = document.querySelector('#btnNewGame');
 // console.log(btnPedir);
 // Hago una referencia hacia el div del jugador en el html.
 const divCartaJugador = document.querySelector('#player-card');
@@ -171,5 +172,24 @@ btnDetener.addEventListener("click", () => {
     btnDetener.disabled = true;
 
     turnoComputadora( puntosJugador );
+})
+
+btnNuevoJuego.addEventListener("click", () => {
+
+    console.clear();
+    deck = [];
+    deck = crearDeck();
+    
+    puntosJugador = 0;
+    puntosComputador = 0; //
+
+    puntosHTML[0].innerText = 0;
+    puntosHTML[1].innerText = 0;
+
+    divCartaComputador.innerHTML = ' ';
+    divCartaJugador.innerHTML = ' ';
+
+    btnPedir.disabled = false;
+    btnDetener.disabled = false;
 
 })
