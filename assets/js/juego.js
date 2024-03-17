@@ -106,8 +106,25 @@ const valorCarta = (carta) => {
             if( puntosMinimos > 21){
                 break;
             }
-
         } while ( ( puntosComputador < puntosMinimos ) && ( puntosMinimos <= 21 ) );
+
+
+        setTimeout(() => {            
+            // Aqui comprueba las situaciones posibles y al final imprime quien gano o perdio el juego.
+            // Utilizamos esta funcion de javascript, para que el mensaje salga despues de 10 milisegundos
+            // y asi termine el hilo correspondiente que permite desplegar las cartas.
+            if( puntosComputador === puntosMinimos ) {
+                alert( 'Nadie Gano');
+            } else if( puntosMinimos > 21 ) {
+                alert( 'La Computadora Ganó' );
+            } else if( puntosComputador > 21 ) {
+                alert( 'El Jugador Ganó' );
+            } else{
+                alert(' Computador gana');
+            }
+
+        }, 10 );  
+
    }
 
 
@@ -154,8 +171,5 @@ btnDetener.addEventListener("click", () => {
     btnDetener.disabled = true;
 
     turnoComputadora( puntosJugador );
-
-
-
 
 })
