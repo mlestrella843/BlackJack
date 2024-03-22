@@ -8,30 +8,37 @@
 //uso del Patron Modulo de javascript
 ( () => {
     
-
     let deck = [];
-    const tipos = ['C', 'D', 'H', 'S'];
-    const especiales = [ 'A', 'J', 'Q', 'K' ]; 
+    const tipos = ['C', 'D', 'H', 'S'],
+          especiales = [ 'A', 'J', 'Q', 'K' ]; 
 
-    let puntosJugador=0;
-    let puntosComputador=0;
+    // let puntosJugador=0;
+    // let puntosComputador=0;
+    let puntosJugadores = [ ];
 
     // Referencias del HTML
-    const btnPedir = document.querySelector('#btnPedir');
-    const btnDetener = document.querySelector('#btnStop');
-    const btnNuevoJuego = document.querySelector('#btnNewGame');
+    const btnPedir = document.querySelector('#btnPedir'),
+          btnDetener = document.querySelector('#btnStop'),
+          btnNuevoJuego = document.querySelector('#btnNewGame');
     // console.log(btnPedir);
     // Hago una referencia hacia el div del jugador en el html.
-    const divCartaJugador = document.querySelector('#player-card');
+    const divCartaJugador = document.querySelector('#player-card'),
     // Hago referencia hacia los puentos del jugador dentro del elemento small.
-    const divCartaComputador = document.querySelector('#computer-card');
+          divCartaComputador = document.querySelector('#computer-card'),
+          puntosHTML = document.querySelectorAll('small');
 
-    const puntosHTML = document.querySelectorAll('small');
-
-
+    // Esta funcion inicializa el juego     
+    const inicializarJuego = ( numJugadores = 2 ) => {
+        deck = crearDeck();
+        for( let i = 0; i < numJugadores; i++ ) {
+            puntosJugadores.push( 0 );
+        }
+        console.log({ puntosJugadores });
+    }
 
     //Esta funcion crea las barajas
     const crearDeck = () => {
+        deck = [];
         for ( let i=2; i<=10; i++ ) {
             for( const tipo of tipos) {
                 deck.push( i + tipo);
@@ -42,10 +49,10 @@
                 deck.push( especial + tipo );
             }
         }
-        console.log(deck);
-        deck = _.shuffle(deck); // Esta funcion de la biblioteca underscore, mezcla el array de cartas
-        console.log(deck);
-        return deck
+        // console.log(deck);
+        // deck = _.shuffle(deck); // Esta funcion de la biblioteca underscore, mezcla el array de cartas
+        // console.log(deck);
+        return _.shuffle(deck);
     }
 
     crearDeck();
@@ -55,10 +62,11 @@
         if(deck.length === 0){
             throw 'No hay cartas en el deck';
         }
-        let carta = deck.pop();
-        // console.log(deck);
-        // console.log({carta});
-        return carta;
+        // let carta = deck.pop();
+        // // console.log(deck);
+        // // console.log({carta});
+        // return carta;
+        return deck.pop();
     }
     // pedirCarta();
 
@@ -69,7 +77,7 @@
         return ( isNaN( valor) ) ? // si no es numero haz la siguiente evaluacion
             ( valor === 'A') ? 11 : 10 // como no es un numero, si es igual a A equivale a 11 puntos, sino a 10 puntos
             : valor * 1; // y si en el string tiene valor de numero, lo convertimos a numero multiplicandolo por 1.
-            }
+        }
     // Esto es para comprobar el vaor que se esta extrallendo de la carta.       
     // const valor = valorCarta( pedirCarta() );
     // console.log({valor});
@@ -92,6 +100,15 @@
     // document.body.append( input );
     // input.classList.add('form-control');
     // input.placeholder = 'Enter name';
+
+
+        const acumularPuntos = () => {  
+
+
+        }
+
+
+
 
 
     // TURNO DE LA COMPUTADORA
@@ -160,6 +177,7 @@
             btnPedir.disabled = true;
             btnDetener.disabled = true;
             turnoComputadora( puntosJugador );
+
         } else if ( puntosJugador === 21 ){
             console.info("¡Felicidades! Has ganado");
             btnPedir.disabled = true;
@@ -168,7 +186,6 @@
         }
 
     });
-
 
     btnDetener.addEventListener("click", () => {
 
@@ -179,10 +196,11 @@
     })
 
     btnNuevoJuego.addEventListener("click", () => {
-
+       
         console.clear();
-        deck = [];
-        deck = crearDeck();
+        // deck = [];
+        // deck = crearDeck();
+        inicializarJuego( );
 
         puntosJugador = 0;
         puntosComputador = 0; //
